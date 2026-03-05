@@ -1,11 +1,12 @@
 import z from "zod";
 
-export const loginSchema = z.object({
+export const loginSchemaForm = z.object({
+  // Method .email() deprecated karena digantikan oleh .regex() dengan pola email, agar lebih fleksibel dan konsisten dengan validasi lain di Zod.
   email: z
     .string()
     .min(1, "Email is required")
-    .email("Please enter a valid email"),
+    .regex(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please enter a valid email"),
   password: z.string().min(1, "Password is required"),
 });
 
-export type LoginForm = z.infer<typeof loginSchema>;
+export type LoginForm = z.infer<typeof loginSchemaForm>;

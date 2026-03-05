@@ -1,7 +1,7 @@
 import Login from "./_components/login";
 
 export const metadata = {
-    title: 'Hamzah Cafe | Login'
+    title: 'Cafe Coffe | Login'
 };
 
 export default function LoginPage() {
