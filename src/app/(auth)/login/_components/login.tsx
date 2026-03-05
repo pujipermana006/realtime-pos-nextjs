@@ -1,6 +1,8 @@
+"use client"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { INITIAL_LOGIN_FORM } from "@/constants/auth-constanst";
 import { LoginForm, loginSchema } from "@/validations/auth-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -8,7 +10,8 @@ import { useForm } from "react-hook-form";
 export default function Login() {
 
     const form = useForm<LoginForm>({
-        resolver: zodResolver(loginSchema)
+        resolver: zodResolver(loginSchema),
+        defaultValues: INITIAL_LOGIN_FORM
     })
     return (
         <Card>
