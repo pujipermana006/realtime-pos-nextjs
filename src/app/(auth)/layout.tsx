@@ -18,7 +18,6 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                         <Coffee className="size-4" />
                     </div>
                     Cafe Coffe
-
                 </div>
                 {children}
             </div>

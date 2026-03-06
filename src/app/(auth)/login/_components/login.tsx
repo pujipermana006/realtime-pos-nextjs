@@ -9,6 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { startTransition, useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { login } from "../action";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Login() {
 
@@ -31,7 +33,9 @@ export default function Login() {
     useEffect(() => {
         if (loginState?.status === 'error') {
             startTransition(() => {
-                loginAction(null)
+                toast.error('Login Failed', {
+                    description: loginState.errors?._form?.[0],
+                })
             })
         }
     }, [loginState, loginAction])
@@ -61,8 +65,8 @@ export default function Login() {
                             placeholder="*****"
 
                         />
-                        <Button type="submit">
-                            Login
+                        <Button type="submit">{isPendingLogin ? <Loader2 className="animate-spin" /> : 'Login'}
+
                         </Button>
                     </form>
                 </Form>

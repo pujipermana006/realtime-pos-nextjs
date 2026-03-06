@@ -24,7 +24,10 @@ export async function login(
   if (!validatedFields.success) {
     return {
       status: "errors",
-      errors: validatedFields.error.flatten().fieldErrors,
+      errors: {
+        ...validatedFields.error.flatten().fieldErrors,
+        _form: [],
+      },
     };
   }
   const supabase = await createClient();
