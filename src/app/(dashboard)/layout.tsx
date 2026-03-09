@@ -1,24 +1,26 @@
 import AppSidebar from "@/components/common/app-sidebar";
 import { DarkmodeToggle } from "@/components/common/darkmode-toggle";
-import { SidebarInset, SidebarProvider, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 import DashboardBreadcrumb from "./_components/dashboard-breadcrumb";
+import { Separator } from "@/components/ui/separator";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
     return (
         <SidebarProvider>
             <AppSidebar />
-            <SidebarInset className="overvlow-x-hidden">
+            <SidebarInset className="overflow-x-hidden">
                 <header className="flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-                    <div className="flex item-center gap-2 px-4">
+                    <div className="flex items-center gap-2 px-4">
                         <SidebarTrigger className="cursor-pointer" />
-                        <SidebarSeparator orientation='vertical' className="mr-2 data-[orientation=vertical]:h-4" />
+                        <Separator
+                            orientation='vertical'
+                            className="mr-2 data-[orientation=vertical]:h-4"
+                        />
+                        <DashboardBreadcrumb />
                     </div>
-                    <DashboardBreadcrumb />
                     <div className="px-4">
-
                         <DarkmodeToggle />
-
                     </div>
                 </header>
                 <main className="flex flex-1 flex-col items-start gap-4 p-4 pt-0">
