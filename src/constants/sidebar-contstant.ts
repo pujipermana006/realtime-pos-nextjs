@@ -14,8 +14,8 @@ export const SIDEBAR_MENU_LIST = {
       icon: LayoutDashboard,
     },
     {
-      title: "Dashboard",
-      url: "/admin",
+      title: "Order",
+      url: "/admin/order",
       icon: Album,
     },
     {

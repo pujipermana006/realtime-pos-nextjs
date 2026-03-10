@@ -4,29 +4,32 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupConte
 import { DropdownMenu, DropdownMenuGroup, DropdownMenuItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { SIDEBAR_MENU_LIST, SidebarMenuKey } from "@/constants/sidebar-contstant";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { signOut } from "@/actions/auth-action";
 
 
 export default function AppSidebar() {
     const { isMobile } = useSidebar();
+    const pathname = usePathname();
     const profile = {
         name: 'puji',
         role: 'admin',
         avatar_url: 'test.com'
     }
     return (
-        <Sidebar>
+        <Sidebar collapsible="icon">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuItem>
+                        <SidebarMenuButton size="lg" asChild>
                             <div className="flex items-center gap-2 self-center font-medium">
                                 <div className="bg-teal-500 p-2 items-center justify-center rounded">
                                     <Coffee className="size-4" />
                                 </div>
                                 Cafe Coffe
-
                             </div>
-                        </SidebarMenuItem>
+                        </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
@@ -37,17 +40,15 @@ export default function AppSidebar() {
                             {SIDEBAR_MENU_LIST[profile.role as SidebarMenuKey]?.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild tooltip={item.title}>
-                                        <a href="item.url">
+                                        <a href={item.url} className={cn('px-4 py-3 h-auto', {
+                                            'bg-teal-500 text-white hover:bg-teal-500 hover:text-white': pathname === item.url
+                                        })}>
                                             {item.icon && <item.icon />}
                                             <span>{item.title}</span>
                                         </a>
 
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
-
-
-
-
                             ))
                             }
                         </SidebarMenu>
@@ -58,7 +59,7 @@ export default function AppSidebar() {
                 <SidebarMenuItem>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <SidebarMenuButton size="lg">
+                            <SidebarMenuButton size="lg" className="data-[state=open]:bg-sidebar-accent data-[state=open]:text bg-sidebar-accent-foreground">
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage src="" alt="" />
 
@@ -94,7 +95,7 @@ export default function AppSidebar() {
                             </DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
-                                <DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => signOut()}>
                                     <LogOut />
                                     Logout
                                 </DropdownMenuItem>
