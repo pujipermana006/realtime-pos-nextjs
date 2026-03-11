@@ -1,7 +1,6 @@
 import { INITIAL_STATE_PROFILE } from "@/constants/auth-constanst";
 import { Profile } from "@/types/auth";
 import { User } from "@supabase/supabase-js";
-import { profile } from "console";
 import { create } from "zustand";
 
 type AuthState = {

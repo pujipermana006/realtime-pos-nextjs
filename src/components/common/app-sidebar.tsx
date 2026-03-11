@@ -77,16 +77,16 @@ export default function AppSidebar() {
                             <DropdownMenuLabel className="p-0 font-normal">
                                 <div className="flex items-center gap-2 px-1 py-1">
                                     <Avatar className="h-8 w-8 rounded-lg">
-                                        <AvatarImage src="" alt="" />
+                                        <AvatarImage src={profile.avatar_url} alt={profile.avatar_url} />
 
                                         <AvatarFallback className="rounded-lg">
-                                            A
+                                            {profile.name?.charAt(0)}
                                         </AvatarFallback>
 
                                     </Avatar>
                                     <div className="leading-tight">
-                                        <h4 className="truncate font-medium">Administrator </h4>
-                                        <p className="text-muted-foreground truncate text-xs">Admin</p>
+                                        <h4 className="truncate font-medium">{profile.name} </h4>
+                                        <p className="text-muted-foreground truncate text-xs">{profile.role}</p>
                                     </div>
                                 </div>
                             </DropdownMenuLabel>
