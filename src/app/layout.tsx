@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/providers/theme-providers";
 import { Toaster } from "@/components/ui/sonner";
 import AuthStoreProvider from "@/providers/auth-store-provider";
 import { cookies } from "next/headers";
+import ReactQueryProvider from "@/providers/react-query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,16 +29,19 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthStoreProvider profile={profile}>
+          <ReactQueryProvider>
 
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster />
+            </ThemeProvider>
+
+          </ReactQueryProvider>
         </AuthStoreProvider>
       </body>
     </html>
